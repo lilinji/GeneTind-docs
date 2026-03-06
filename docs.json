@@ -15,89 +15,6 @@
   "navigation": {
     "languages": [
       {
-        "language": "en",
-        "groups": [
-          {
-            "group": "Trellis (getting started)",
-            "pages": [
-              "guide/ch01-what-is-trellis",
-              "guide/ch02-quick-start",
-              "guide/ch03-first-task"
-            ]
-          },
-          {
-            "group": "Trellis (mastery)",
-            "pages": [
-              "guide/ch04-architecture",
-              "guide/ch05-commands",
-              "guide/ch06-task-management",
-              "guide/ch07-writing-specs",
-              "guide/ch08-real-world"
-            ]
-          },
-          {
-            "group": "Trellis (customization)",
-            "pages": [
-              "guide/ch09-custom-commands",
-              "guide/ch10-custom-agents",
-              "guide/ch11-custom-hooks",
-              "guide/ch12-custom-skills",
-              "guide/ch13-multi-platform"
-            ]
-          },
-          {
-            "group": "Trellis (appendices)",
-            "pages": [
-              "guide/appendix-a",
-              "guide/appendix-b",
-              "guide/appendix-c",
-              "guide/appendix-d",
-              "guide/appendix-e",
-              "guide/appendix-f",
-              "guide/resources"
-            ]
-          },
-          {
-            "group": "Use cases",
-            "pages": [
-              "use-cases/open-typeless"
-            ]
-          },
-          {
-            "group": "Resource marketplace",
-            "pages": [
-              "skills-market/index",
-              "skills-market/trellis-meta",
-              "templates/specs-index",
-              "templates/specs-electron"
-            ]
-          },
-          {
-            "group": "Community",
-            "pages": [
-              "showcase/index",
-              "showcase/open-typeless",
-              "showcase/trellis-cursor",
-              "contribute/docs",
-              "blog/index",
-              "blog/use-k8s-to-know-trellis",
-              "blog/ai-collaborative-dev-system",
-              "changelog/v0.3.4"
-            ]
-          },
-          {
-            "group": "API reference",
-            "pages": [
-              "api-reference/introduction",
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      },
-      {
         "language": "zh",
         "groups": [
           {
@@ -332,6 +249,89 @@
               "zh/api-reference/endpoint/create",
               "zh/api-reference/endpoint/delete",
               "zh/api-reference/endpoint/webhook"
+            ]
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "groups": [
+          {
+            "group": "Trellis (getting started)",
+            "pages": [
+              "guide/ch01-what-is-trellis",
+              "guide/ch02-quick-start",
+              "guide/ch03-first-task"
+            ]
+          },
+          {
+            "group": "Trellis (mastery)",
+            "pages": [
+              "guide/ch04-architecture",
+              "guide/ch05-commands",
+              "guide/ch06-task-management",
+              "guide/ch07-writing-specs",
+              "guide/ch08-real-world"
+            ]
+          },
+          {
+            "group": "Trellis (customization)",
+            "pages": [
+              "guide/ch09-custom-commands",
+              "guide/ch10-custom-agents",
+              "guide/ch11-custom-hooks",
+              "guide/ch12-custom-skills",
+              "guide/ch13-multi-platform"
+            ]
+          },
+          {
+            "group": "Trellis (appendices)",
+            "pages": [
+              "guide/appendix-a",
+              "guide/appendix-b",
+              "guide/appendix-c",
+              "guide/appendix-d",
+              "guide/appendix-e",
+              "guide/appendix-f",
+              "guide/resources"
+            ]
+          },
+          {
+            "group": "Use cases",
+            "pages": [
+              "use-cases/open-typeless"
+            ]
+          },
+          {
+            "group": "Resource marketplace",
+            "pages": [
+              "skills-market/index",
+              "skills-market/trellis-meta",
+              "templates/specs-index",
+              "templates/specs-electron"
+            ]
+          },
+          {
+            "group": "Community",
+            "pages": [
+              "showcase/index",
+              "showcase/open-typeless",
+              "showcase/trellis-cursor",
+              "contribute/docs",
+              "blog/index",
+              "blog/use-k8s-to-know-trellis",
+              "blog/ai-collaborative-dev-system",
+              "changelog/v0.3.4"
+            ]
+          },
+          {
+            "group": "API reference",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
             ]
           }
         ]
