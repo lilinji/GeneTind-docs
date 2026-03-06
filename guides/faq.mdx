@@ -1,0 +1,250 @@
+---
+title: 'FAQ'
+description: 'Common questions about Trellis'
+---
+
+## General
+
+<AccordionGroup>
+
+<Accordion title="Looks useful but sounds complex. How do I actually get started?">
+
+Install with `npm install -g @mindfoldhq/trellis@latest`, then run `trellis init` in your project. That's it — you're ready to go.
+
+1. **Claude Code / iFlow users** — Open a new session and start working directly. The session start hook automatically injects everything the AI needs (Trellis workflow, recent git history, your latest journal entries, project context). Describe your requirements, the AI creates tasks, generates PRDs, loads relevant specs, and delegates to specialized agents (implement, check, etc.). After you verify the result, use `/trellis:record-session` to save the journal. You can also run `/trellis:start` manually to see the full workflow.
+
+2. **OpenCode users** — Similar to Claude Code. The session start plugin auto-injects context on your first message. Use `/trellis:start` to begin, then follow the same workflow: describe needs → AI loads specs → work → `/trellis:check-backend` or `/trellis:check-frontend` to self-review → `/trellis:record-session` to save. For full multi-agent pipeline support, install the [oh-my-opencode](https://github.com/nicepkg/oh-my-opencode) global plugin.
+
+3. **Cursor users** — Run `trellis init --cursor` to set up. Cursor doesn't support hooks yet, so manually trigger `/trellis-start` at the beginning of each session. The workflow is: `/trellis-start` → `/trellis-before-backend-dev` or `/trellis-before-frontend-dev` to load specs → do your work → `/trellis-check-backend` or `/trellis-check-frontend` to self-review → `/trellis-record-session` to save. Note: Cursor uses `-` instead of `:` in command names.
+
+4. **Codex users** — Codex uses skills (`$` prefix) instead of slash commands. The workflow is: `$start` → `$before-backend-dev` or `$before-frontend-dev` → work → `$check-backend` or `$check-frontend` → `$record-session`.
+
+5. **Other tools** (Trae, Windsurf, etc.) — You can manually create slash commands matching your IDE/CLI format, then follow the same workflow as Cursor.
+
+</Accordion>
+
+<Accordion title="How do I install? Global vs local? Version switching?">
+
+**Install (global recommended):**
+
+```bash
+npm install -g @mindfoldhq/trellis@latest
+```
+
+**Verify installation:**
+
+```bash
+trellis --version
+```
+
+**Initialize in your project:**
+
+```bash
+trellis init                # (recommended) interactive, confirm each step
+trellis init -y             # skip confirmation, use defaults
+trellis init -u {username}  # also set developer identity (without this, auto-detects from .git/ config)
+trellis init -f             # force overwrite existing files
+trellis init -s             # skip existing files
+```
+
+**Version switching & updates:**
+
+```bash
+trellis update                    # compare version diff and update
+trellis update --migrate          # apply file renames/deletes and other migrations
+```
+
+**Roll back to stable release:** `npm install -g @mindfoldhq/trellis@latest`
+
+`trellis update` never overwrites `.trellis/workspace/`, `.trellis/tasks/`, `.trellis/.developer`, `.trellis/spec/frontend/`, `.trellis/spec/backend/` — these paths are protected. Every update automatically creates a timestamped backup of all contents under `.trellis/`, `.cursor/`, `.claude/` etc. in a `.trellis/.backup-*` directory. No need to worry about destructive updates.
+
+</Accordion>
+
+<Accordion title="Why Trellis instead of Skills?">
+  Skills are optional — the AI might skip them, leading to inconsistent quality. Trellis enforces
+  specifications through injection. Every session gets the specs whether the AI "feels like it" or
+  not.
+</Accordion>
+
+<Accordion title="Do I write spec files manually or let AI create them?">
+  AI typically generates specs from your instructions. But you should contribute when you have
+  architectural insights that AI can't figure out on its own — things like "we always use this error
+  format because of X legacy reason" or "this pattern exists because of Y constraint."
+</Accordion>
+
+<Accordion title="How is this different from CLAUDE.md / AGENTS.md / .cursorrules?">
+Those formats load all content every time. If you have 50 pages of specs, every session reads all 50 pages.
+
+Trellis uses layered architecture with context compression. JSONL files specify which specs to load for which task. Your auth feature loads auth specs. Your UI component loads frontend specs. Less noise, more signal.
+
+</Accordion>
+
+<Accordion title="Will multiple people conflict?">
+No. Each team member has an isolated workspace at `.trellis/workspace/{name}/`. Your journals are yours. Your teammate's journals are theirs.
+
+Specs are shared, which is the point — everyone follows the same conventions.
+
+</Accordion>
+
+<Accordion title="How does AI remember previous conversations?">
+Use `/trellis:record-session` to have AI write summaries to journal files. On the next session start, it reads recent journals and git info to restore context.
+
+It's not magic memory. It's explicit journaling. You control what gets remembered.
+
+</Accordion>
+
+<Accordion title="Does Trellis work with Cursor?">
+Yes. Run `trellis init --cursor` to set up Cursor-specific commands.
+
+Trellis creates `.cursor/commands/` with all slash commands (e.g., `/trellis-start`, `/trellis-finish-work`). Note that Cursor uses `-` instead of `:` in command names.
+
+**Hooks**: Cursor doesn't support auto-injection hooks yet, so you need to manually trigger `/trellis-start` at the beginning of each session.
+
+**Multi-Agent** (same dir): Limited support, requires manual coordination.
+
+**Multi-Session** (worktree isolation): Not supported.
+
+</Accordion>
+
+</AccordionGroup>
+
+## Specs
+
+<AccordionGroup>
+
+<Accordion title="How long should specs be?">
+Short enough to skim in 30 seconds. If it takes longer, split into multiple files.
+
+The AI reads the whole spec but pays less attention to each part when specs are long.
+
+</Accordion>
+
+<Accordion title="My spec isn't being followed. What's wrong?">
+Common causes:
+
+1. **Too vague** — "Use good error handling" means nothing. Add specific patterns with code examples.
+2. **No examples** — Show actual code. AI learns better from examples than descriptions.
+3. **Outdated paths** — If you reference files that don't exist, the spec becomes confusing.
+4. **Conflicting rules** — Two specs say different things. Pick one.
+
+Test it: new session, ask for code the spec covers, check if rules are followed.
+
+</Accordion>
+
+<Accordion title="Can specs cover non-code things?">
+  Yes. Documentation style, commit message format, PR templates, API design patterns — anything you
+  want consistent.
+</Accordion>
+
+</AccordionGroup>
+
+## Tasks & Workspace
+
+<AccordionGroup>
+
+<Accordion title="Do I need tasks for everything?">
+  No. Tasks help when you need tracking and context isolation. Quick fixes don't need a task.
+  Multi-day features benefit from one.
+</Accordion>
+
+<Accordion title="What if I forget to set the current task?">
+Session runs without task-specific context. Specs still load from defaults, but the AI won't know your PRD or task-specific files.
+
+For task-specific work, use `/trellis:start` to begin a session.
+
+</Accordion>
+
+<Accordion title="How do JSONL context files work?">
+Each line specifies a file to include:
+
+```json
+{"file": ".trellis/spec/backend/index.md", "reason": "Backend coding standards"}
+{"file": "src/api/users.ts", "reason": "API implementation context"}
+```
+
+Different agents get different files. Implement agent might need more context than check agent.
+
+</Accordion>
+
+</AccordionGroup>
+
+## Multi-agent
+
+<AccordionGroup>
+
+<Accordion title="How many agents can run at once?">
+No hard limit, but practically:
+
+- API credits (each agent uses tokens)
+- Your ability to review output
+
+3-5 agents is manageable. More gets hard to track.
+
+</Accordion>
+
+<Accordion title="What if two agents modify the same file?">
+Depends on the mode:
+
+- **Multi-Agent (same dir)**: Agents share the same directory and can conflict. Plan tasks to avoid file overlap.
+- **Multi-Session (worktree)**: Each agent works in an isolated Git worktree. No conflicts during development, resolve when merging PRs.
+
+</Accordion>
+
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+
+<Accordion title="Installed Trellis but nothing seems different">
+Trellis works in the background. No UI changes.
+
+Verify:
+
+1. `.trellis/` directory exists
+2. `.claude/settings.json` has hook configs
+3. Start a session — specs should appear in context
+
+</Accordion>
+
+<Accordion title="AI is ignoring my specs">
+Several possible causes:
+
+1. **Specs not loaded**: Check file paths in `.trellis/spec/` and JSONL context files
+2. **Context too long**: AI may "forget" specs in long conversations. Start fresh session or remind it
+3. **Spec clarity**: More specific specs work better than vague ones
+
+Trellis improves consistency but isn't a silver bullet. AI still makes mistakes.
+
+</Accordion>
+
+<Accordion title="How do I upgrade?">
+Update the CLI:
+
+```bash
+npm install -g @mindfoldhq/trellis@latest
+```
+
+Then update your project:
+
+```bash
+trellis update
+```
+
+This only touches unmodified files. Your customizations stay intact.
+
+**Protected paths** (never overwritten): `.trellis/workspace/`, `.trellis/tasks/`, `.trellis/.developer`, `.trellis/spec/frontend/`, `.trellis/spec/backend/`.
+
+**Automatic backups**: Every update creates a timestamped backup of `.trellis/`, `.cursor/`, `.claude/` etc. at `.trellis/.backup-*` before any changes. No risk of destructive updates.
+
+When there are breaking changes (like directory restructuring), run with `--migrate`:
+
+```bash
+trellis update --migrate
+```
+
+This executes file migrations — renames and deletes old files to match the new structure. Modified files prompt for confirmation before migrating.
+
+</Accordion>
+
+</AccordionGroup>

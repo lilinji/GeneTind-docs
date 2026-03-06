@@ -1,0 +1,13 @@
+<svg width="1682" height="367" viewBox="0 0 1682 367" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <mask id="cuts">
+    <rect width="100%" height="100%" fill="white"/>
+    <rect x="240" y="235" width="120" height="15" fill="black"/>
+    <rect x="250" y="265" width="120" height="15" fill="black"/>
+    <rect x="260" y="295" width="120" height="15" fill="black"/>
+  </mask>
+</defs>
+<text x="370" y="252" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="240" font-weight="bold" fill="black">GeneTind</text>
+<path d="M 120 30 C 130 30 136 38 138 48 L 240 320 H 180 L 125 165 Q 120 150 115 165 L 60 320 H 0 L 102 48 C 104 38 110 30 120 30 Z" fill="#0C8C5E"/>
+<path d="M 240 110 C 248 110 254 116 256 126 L 330 320 H 285 L 246 215 Q 240 200 234 215 L 195 320 H 150 L 224 126 C 226 116 232 110 240 110 Z" fill="#18E299" mask="url(#cuts)"/>
+</svg>

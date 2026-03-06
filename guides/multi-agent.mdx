@@ -1,0 +1,143 @@
+---
+title: 'Parallel Sessions'
+description: 'Run multiple isolated AI sessions in parallel'
+---
+
+## Two approaches
+
+Trellis supports two ways to run multiple agents:
+
+| Approach          | Description                           | Isolation                    |
+| ----------------- | ------------------------------------- | ---------------------------- |
+| **Multi-Agent**   | Multiple agents in the same directory | Shared files, can conflict   |
+| **Multi-Session** | Each agent in separate Git worktree   | Fully isolated, no conflicts |
+
+This guide focuses on **Multi-Session** - the worktree-based approach.
+
+## Why Multi-Session
+
+Some tasks are independent. Adding a login page doesn't affect adding a settings page. With separate worktrees, agents can't interfere with each other.
+
+```
+main repo
+    │
+    ├── worktree-1/  →  Session 1 (feature-a)
+    ├── worktree-2/  →  Session 2 (feature-b)
+    └── worktree-3/  →  Session 3 (feature-c)
+```
+
+Each worktree is a separate checkout on a separate branch. No merge conflicts during development.
+
+When done, each session creates a PR. You review and merge.
+
+## Configuration
+
+Before starting, create `worktree.yaml` in your project root:
+
+```yaml
+# worktree.yaml
+base_branch: main
+worktree_dir: ../.trellis-worktrees # Where to create worktrees
+tasks:
+  - id: feature-a
+    branch: feature/login-page
+    prd: |
+      Add login page with email/password authentication.
+      Include form validation and error handling.
+  - id: feature-b
+    branch: feature/settings-page
+    prd: |
+      Add user settings page.
+      Allow changing display name and password.
+```
+
+Each task defines:
+
+- `id`: Unique identifier
+- `branch`: Git branch name
+- `prd`: Requirements for this task
+
+## Starting parallel sessions
+
+Use the `/trellis:parallel` command in Claude Code. It reads `worktree.yaml` and:
+
+- Creates worktrees for each task
+- Spawns Claude Code sessions
+- Sets up branches
+
+Or use the script directly:
+
+```bash
+python3 .trellis/scripts/multi_agent/start.py
+```
+
+Each session runs independently.
+
+## Monitoring progress
+
+Check status with:
+
+```bash
+python3 .trellis/scripts/multi_agent/status.py
+```
+
+Output shows each task's current phase and branch.
+
+## Session pipeline
+
+Each session follows phases:
+
+1. **Plan** - Understand requirements, identify files to modify
+2. **Implement** - Write the code
+3. **Check** - Review against specs, self-fix issues
+4. **PR** - Create pull request
+
+The check phase has a "Ralph Loop" - if issues are found, it goes back to fix them. This prevents sloppy PRs.
+
+## When to use this
+
+Good for:
+
+- Independent features
+- Parallel bug fixes
+- Generating variations (different approaches to same problem)
+
+Not good for:
+
+- Features that depend on each other
+- Work that touches the same files
+- When you need to iterate with the AI
+
+## Cleanup
+
+When done, clean up worktrees:
+
+```bash
+python3 .trellis/scripts/multi_agent/cleanup.py
+```
+
+This removes worktrees but keeps branches. You can delete merged branches normally.
+
+## Platform support
+
+| Feature                  | Claude Code | Cursor           | iFlow   | OpenCode         | Codex            |
+| ------------------------ | ----------- | ---------------- | ------- | ---------------- | ---------------- |
+| Multi-Agent (same dir)   | ✅ Full     | ⚠️ Limited       | ✅ Full | ⚠️ Limited       | ⚠️ Limited       |
+| Multi-Session (worktree) | ✅ Full     | ❌ Not supported | ✅ Full | ❌ Not supported | ❌ Not supported |
+
+Multi-Session requires hooks for automatic context injection (currently supported by Claude Code and iFlow).
+
+### Agent pipeline
+
+Each multi-session task uses a 6-agent pipeline:
+
+| Agent         | Role                             |
+| ------------- | -------------------------------- |
+| **plan**      | Analyze requirements, plan files |
+| **dispatch**  | Orchestrate the pipeline         |
+| **implement** | Write the code                   |
+| **check**     | Review against specs, self-fix   |
+| **debug**     | Fix specific issues              |
+| **research**  | Search codebase, find patterns   |
+
+You also need enough API credits. Three sessions means three times the token usage.
