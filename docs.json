@@ -3,7 +3,8 @@
   "theme": "mint",
   "exclude": [
     ".tmp/**",
-    ".qodo/**"
+    ".qodo/**",
+    "GeneTind-Life-Skills/**"
   ],
   "name": "Mint Starter Kit",
   "colors": {
@@ -17,6 +18,15 @@
       {
         "language": "zh",
         "groups": [
+          {
+            "group": "入门篇",
+            "pages": [
+              "zh/life-skills",
+              "zh/guide/ch01-what-is-trellis",
+              "zh/guide/ch02-quick-start",
+              "zh/guide/ch03-first-task"
+            ]
+          },
           {
             "group": "AI 学习资料",
             "pages": [
@@ -155,14 +165,6 @@
             ]
           },
           {
-            "group": "入门篇",
-            "pages": [
-              "zh/guide/ch01-what-is-trellis",
-              "zh/guide/ch02-quick-start",
-              "zh/guide/ch03-first-task"
-            ]
-          },
-          {
             "group": "精通篇",
             "pages": [
               "zh/guide/ch04-architecture",
@@ -259,6 +261,7 @@
           {
             "group": "Trellis (getting started)",
             "pages": [
+              "ml/life-skills",
               "guide/ch01-what-is-trellis",
               "guide/ch02-quick-start",
               "guide/ch03-first-task"
