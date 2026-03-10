@@ -238,7 +238,7 @@ if __name__ == "__main__":
 
 ## 使用 ADK 智能体消费 FastMCP 服务器
 
-可以将 ADK 智能体设置为 MCP 客户端，以使用正在运行的 FastMCP 服务器。这需要使用 FastMCP 服务器的网络地址配置 HttpServerParameters，通常是 http://localhost:8000。
+可以将 ADK 智能体设置为 MCP 客户端，以使用正在运行的 FastMCP 服务器。这需要使用 FastMCP 服务器的网络地址配置 HttpServerParameters，通常是 `http://localhost:8000`。
 
 可以包含 tool_filter 参数以限制智能体对服务器提供的特定工具的使用，例如 'greet'。当提示"Greet John Doe"等请求时，智能体的嵌入式 LLM 识别通过 MCP 可用的 'greet' 工具，使用参数"John Doe"调用它，并返回服务器的响应。此过程演示了通过 MCP 公开的用户定义工具与 ADK 智能体的集成。
 

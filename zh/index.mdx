@@ -1,35 +1,54 @@
 ---
-title: 'Trellis'
-description: '面向 Claude Code 和 Cursor 的一站式 AI 框架和工具集'
-icon: 'map'
+title: 'OpenClaw 文档总览'
+description: '这套文档同时包含 OpenClaw 教程、legacy Trellis 指南和 AI 学习资料。'
+icon: 'book-open'
 ---
 
-## Trellis 是什么？
+# OpenClaw 文档总览
 
-AI 的能力像藤蔓一样生长——充满活力但四处蔓延。Trellis 是 AI 的脚手架，引导它沿着规范的路径前进。
+这个仓库不是单一路线文档，而是一套混合知识库。你可以把它理解成 3 条并行内容线：当前的 `OpenClaw` 产品教程、保留中的 `Trellis` legacy 指南，以及 `AI 学习资料`。
 
-## 为什么用 Trellis？
+## 这三条内容线现在分别是什么
 
-| 功能             | 解决什么问题                                                                                                 |
-| ---------------- | ------------------------------------------------------------------------------------------------------------ |
-| **自动注入**     | 规范和工作流自动注入每次对话，写一次，永久生效                                                               |
-| **自更新规范库** | 最佳实践存在自更新的 spec 文件中，用得越多，AI 越懂你                                                        |
-| **并行会话**     | 一个会话窗口可以在后台启动多个会话窗口，每个会话窗口都可以调用多个 Agent 同时工作，运行在各自独立的 worktree |
-| **团队共享**     | 团队共享规范，团队里有一个高人搞一版好的规范，拉高全员的 AI coding 水平                                      |
-| **会话持久化**   | 工作记录持久化到仓库，AI 跨会话记住项目上下文，不用每次再费劲告诉 AI 你的项目情况是什么                      |
+| 内容线 | 当前状态 | 最适合谁 |
+| --- | --- | --- |
+| OpenClaw | 当前维护中的主线 | 想部署个人 AI 助手的读者 |
+| Trellis legacy | 保留中的历史文档 | 想查旧工作流、旧设计和历史背景的读者 |
+| AI 学习资料 | 归档型资料区 | 想系统补基础、翻资料和继续整理旧内容的读者 |
 
-<CardGroup cols={2}>
-  <Card title="快速开始" icon="rocket" href="/guide/ch02-quick-start">
-    5 分钟安装 Trellis，搭建你的第一个项目。
+## 先选你的目标
+
+<CardGroup cols={3}>
+  <Card title="部署 OpenClaw" icon="rocket" href="/openclaw/index">
+    7 天教程，从零搭起一个可长期运行的 AI 助手。
   </Card>
-  <Card title="架构全景" icon="book" href="/guide/ch04-architecture">
-    了解 Specs、Tasks、Hook 和 Workspace。
+  <Card title="阅读 Trellis 指南" icon="book" href="/guide/ch01-what-is-trellis">
+    保留中的工作流文档，适合需要理解历史 Trellis 体系的人。
   </Card>
-  <Card title="命令全解" icon="terminal" href="/guide/ch05-commands">
-    13 条 Slash 命令的完整用法。
-  </Card>
-  <Card title="实战场景" icon="code" href="/guide/ch08-real-world">
-    从 Bug 修复到全栈开发的真实案例。
+  <Card title="浏览 AI 学习资料" icon="graduation-cap" href="/ml/index">
+    系统化整理的 AI 入门、技术理解和应用资料。
   </Card>
 </CardGroup>
 
+## 推荐阅读路径
+
+1. 如果你想真正搭一个 AI 助手，直接进入 [OpenClaw 总览](/openclaw/index)。
+2. 如果你在维护或研究旧的 Trellis 工作流，先看 [什么是 Trellis](/guide/ch01-what-is-trellis)。
+3. 如果你只是想系统补 AI 基础，先看 [AI 学习资料](/ml/index)。
+
+## 常用入口
+
+<CardGroup cols={2}>
+  <Card title="OpenClaw 7 天教程" icon="sparkles" href="/openclaw/index">
+    当前仓库里最适合新用户的主线内容。
+  </Card>
+  <Card title="如何开始使用这套文档" icon="compass" href="./quickstart">
+    按你的目标选择正确阅读路线。
+  </Card>
+  <Card title="贡献文档" icon="pen-tool" href="/contribute/docs">
+    了解本仓库的写作、导航和校验规则。
+  </Card>
+  <Card title="附录资源" icon="link" href="/guide/resources">
+    查看当前仓库入口与 legacy 参考链接。
+  </Card>
+</CardGroup>

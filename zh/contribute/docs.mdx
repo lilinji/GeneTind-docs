@@ -1,168 +1,94 @@
 ---
-title: '文档'
-description: '如何为 Trellis 文档做贡献 (mindfold-ai/docs)'
+title: '贡献文档'
+description: '如何改进这个 Mintlify 仓库里的 OpenClaw 与 legacy 文档内容。'
 ---
 
-## 用 AI 辅助贡献
+# 贡献文档
 
-最简单的贡献方式是使用 Claude Code。我们内置了一个 skill 来引导你完成贡献流程。
+这个仓库同时包含当前的 `OpenClaw` 文档、保留中的 `Trellis` legacy 工作流文档，以及整理型学习资料。优先在原地优化，不要随意删除旧内容，除非任务本身就是清理或迁移。
 
-### 第一步：Fork 并克隆
+## 仓库内容分层
+
+| 内容线 | 状态 | 编辑时怎么处理 |
+| --- | --- | --- |
+| `openclaw/` 与 `zh/openclaw/` | 当前维护中的主线 | 优先保证阅读路径清楚；如果另一种语言已有对应页，尽量同步更新 |
+| `guide/`、`zh/guide/`、`guides/`、`zh/guides/` | 保留中的 Trellis legacy 文档 | 保留现有路由和历史上下文，优先补说明，不要粗暴删改 |
+| `ml/` 与其他归档导入内容 | 维护中的入口页 + 仓库保留的原始资料 | 优先整理入口页；raw 文件只有在清洗后才重新纳入导航 |
+
+## 本地工作流
+
+1. Fork 并克隆仓库。
 
 ```bash
-# 先在 GitHub 上 Fork，然后：
-git clone https://github.com/YOUR_USERNAME/docs.git
-cd docs
-pnpm install
+git clone https://github.com/YOUR_USERNAME/GeneTind-docs.git
+cd GeneTind-docs
 ```
 
-### 第二步：告诉 Claude 你想贡献什么
+2. 如果你本机还没有 Mintlify CLI，先安装。
 
-在项目中打开 Claude Code，描述你想添加的内容：
+```bash
+npm install -g mint
+```
 
-- "我想添加一个 Next.js 项目的规范模板"
-- "我想改进并行会话的文档"
+3. 启动本地预览。
 
-### 第三步：Claude 自动使用 contribute skill
+```bash
+mint dev
+```
 
-Claude 会读取 `contribute` skill 并引导你：
+4. 提交 PR 前至少做一轮校验。
 
-- 文件应该放在哪里
-- 哪些关联文件需要更新（docs.json、索引页面）
-- 双语要求（EN + ZH）
-- 如何本地测试
+```bash
+mint broken-links
+mint validate
+```
 
-### 第四步：审查并提交 PR
+## 哪些文件经常需要一起改
 
-审查修改，用 `pnpm dev` 测试，push 到你的 fork，然后向原仓库开 PR。
+- 内容页：`openclaw/`、`zh/openclaw/`、`guide/`、`zh/guide/`、`guides/`、`zh/guides/`
+- 导航和站点配置：`docs.json`
+- 图片和静态资源：`public/`、`images/`、`logo/`
+- 中英双语成对页面，尤其是 `openclaw/` 与 `zh/openclaw/`
 
-<Tip>contribute skill 了解项目结构和规范。它处理细节，你只需专注于内容。</Tip>
+## 贡献规则
 
----
+- 同一章节、同一教程链路里的页面和图片，优先用相对路径。
+- 跨大区块跳转时，再用根相对路径。
+- 不要直接链接 `.md` 或 `.mdx` 文件。
+- 新页面如果不写进 `docs.json`，就不会出现在导航里。
+- 能优化现有页面时，优先不要新建并行页面。
+- 示例里不要出现密钥、私有 token 或内部接口。
+- 如果修改了用户可见的 OpenClaw 页面，且另一种语言存在对应页面，尽量同步更新。
+- 如果你在改 legacy Trellis 页面，优先补充说明和修正文案，不要直接抹掉历史路由。
+- 如果你在改归档资料，先补一个维护中的 MDX 入口页，再决定是否把更多原始文件挂进导航。
 
-## 贡献方式
+## 推荐自检清单
 
-### 报告问题
+1. frontmatter 至少有 `title` 和 `description`
+2. 新增或移动的页面已经更新 `docs.json`
+3. 内链和图片路径符合上面的“同区块相对路径 / 跨区块根相对路径”规则
+4. `mint broken-links` 通过
+5. `mint validate` 通过
+6. 文风和周边页面保持一致
+
+## 值得优先贡献的内容
+
+- 失效链接和导航漂移
+- 过时的安装说明
+- 入口页太薄、读者不知道该从哪看起的页面
+- `openclaw/` 与 `zh/openclaw/` 的双语一致性
+- frontmatter、描述和页面组织的可发现性问题
+
+## Issue 与 PR
 
 发现文档有问题？开一个 issue：
 
-https://github.com/mindfold-ai/docs/issues
+https://github.com/lilinji/GeneTind-docs/issues
 
 包含：
 
 - 哪个页面有问题
 - 哪里有错或者不清楚
-- 建议的修复方案（如果有的话）
+- 建议的修复方案
 
-### 建议改进
-
-有改进文档的想法？开一个 discussion：
-
-https://github.com/mindfold-ai/docs/discussions
-
-### 贡献 Claude Code Skill
-
-Skill 扩展 Claude 的能力。添加新 skill：
-
-1. Fork 仓库
-2. 创建 plugin 结构：
-   ```
-   plugins/your-plugin/
-   ├── plugin.json
-   └── skills/your-skill/
-       └── SKILL.md
-   ```
-3. 更新 `.claude-plugin/marketplace.json` 注册你的 plugin
-4. 创建文档页面（`skills-market/your-skill.mdx` + 中文版）
-5. 更新 `docs.json` 导航
-6. 开 PR
-
-SKILL.md 格式参考 [Claude Code Skills 文档](https://code.claude.com/docs/en/skills)。
-
-### 贡献 Spec 模板
-
-Spec 模板是 Trellis 项目规范（不是 Claude 功能）。添加新模板：
-
-1. Fork 仓库
-2. 创建 `marketplace/specs/your-template/` 目录和规范文件
-3. 创建文档页面（`templates/specs-your-template.mdx` + 中文版）
-4. 更新 `docs.json` 导航
-5. 开 PR
-
-好的贡献：
-
-- 具体可执行
-- 文档完善
-- 在真实项目上测试过
-
-### 修错别字、改进表述
-
-小修复：直接在 GitHub 上编辑并提交 PR。
-
-大改动：克隆到本地，修改后用 `pnpm dev` 测试。
-
----
-
-## 开发环境
-
-```bash
-# 安装依赖
-pnpm install
-
-# 启动本地开发服务器
-pnpm dev
-
-# 检查 markdown lint
-pnpm lint:md
-
-# 验证文档结构
-pnpm verify
-
-# 格式化文件
-pnpm format
-```
-
----
-
-## 双语要求
-
-所有用户可见内容必须有中英文版本：
-
-| 英文                    | 中文                       |
-| ----------------------- | -------------------------- |
-| `guides/example.mdx`    | `zh/guides/example.mdx`    |
-| `templates/example.mdx` | `zh/templates/example.mdx` |
-
-两种语言的 `docs.json` 导航都要更新。
-
----
-
-## Commit 信息
-
-使用 conventional commits：
-
-```
-docs: add Next.js spec template
-fix: correct broken link in quickstart
-feat: add new skill to marketplace
-```
-
----
-
-## PR 流程
-
-1. 创建 PR，写清楚描述
-2. 确保 CI 检查通过（lint、verify）
-3. 等审查
-4. 处理反馈
-5. 批准后合并
-
----
-
-## 许可证
-
-贡献采用 MIT 许可证。贡献即表示同意。
-
-## 有问题？
-
-开 discussion 或发邮件到 taosu@mindfold.ai。
+提交 PR 时，写清楚你改了哪些页面、为什么要改，以及如果你本地没法跑 Mintlify 校验，卡在哪里。

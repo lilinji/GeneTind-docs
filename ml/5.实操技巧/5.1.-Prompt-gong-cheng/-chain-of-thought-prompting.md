@@ -9,9 +9,9 @@ sidebar_position: 4
 
 Chain of thought prompting 是一种简单且广泛适用的方法，可提高语言模型执行各种推理任务的能力。通过对算术和常识推理的实验，我们发现思维链式启发是模型规模的一种新兴属性。
 
-在 Google 2023.01 的论文 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](../../%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3%E5%90%88%E9%9B%86/google-chain-of-thought-paper) 中对于三个大型语言模型上的实验表明，思考链提示改善了一系列算术、常识和符号推理任务的性能。具体效果如下：
+在 Google 2023.01 的论文 [Chain-of-Thought Prompting Elicits Reasoning in Large Language Models](/ml/参考文档合集/google-chain-of-thought-paper) 中对于三个大型语言模型上的实验表明，思考链提示改善了一系列算术、常识和符号推理任务的性能。具体效果如下：
 
-![图1：思维链提示使得大型语言模型能够解决复杂的算术、常识和符号推理任务。思维链推理过程被突出显示。](../../assets/google-cot-paper-figure%201.png)
+![图1：思维链提示使得大型语言模型能够解决复杂的算术、常识和符号推理任务。思维链推理过程被突出显示。](/ml/assets/google-cot-paper-figure 1.png)
 
 图1：思维链提示使得大型语言模型能够解决复杂的算术、常识和符号推理任务。思维链推理过程被突出显示。
 
@@ -76,4 +76,4 @@ Let's think step by step.
 
 更多阅读：
 
-[谷歌：链式思维提示(COT Prompting)引发大型语言模型的推理](../../%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3%E5%90%88%E9%9B%86/google-chain-of-thought-paper)
+[谷歌：链式思维提示(COT Prompting)引发大型语言模型的推理](/ml/参考文档合集/google-chain-of-thought-paper)

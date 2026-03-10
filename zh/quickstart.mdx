@@ -1,146 +1,50 @@
 ---
-title: '快速开始'
-description: '在你的项目中配置 Trellis'
+title: '如何开始使用这套文档'
+description: '根据你的目标，选择 OpenClaw 教程、legacy Trellis 指南或 AI 学习资料。'
 ---
 
-## 安装 Trellis
+# 如何开始使用这套文档
 
-先全局安装 CLI：
+如果你是第一次打开这个站点，最容易迷路的地方不是“内容太少”，而是“内容线很多”。这页的目的就是帮你用最短路径找到对的入口。
 
-```bash
-npm install -g @mindfoldhq/trellis@latest
-```
+## 先记住这 3 种状态
 
-然后在项目目录初始化：
+- `OpenClaw`：当前维护中的主线
+- `Trellis legacy`：保留中的历史工作流文档
+- `AI 学习资料`：保留原始资料、少量入口页持续维护的归档区
 
-```bash
-trellis init
-```
+## 路线 1：你想部署一个 AI 助手
 
-<Tip>
-Trellis 会用你的名字创建个人工作目录。如果不指定 `-u`，会自动从 `git config user.name` 获取。
+从 [OpenClaw 总览](./openclaw/index) 开始。这是当前仓库里最清晰、最适合新用户的维护中主线。
 
-手动指定：`trellis init -u john`（把 `john` 换成你的名字）。
+推荐顺序：
 
-</Tip>
+1. [OpenClaw 总览](./openclaw/index)
+2. [Day 1：认识 OpenClaw](./openclaw/day/1)
+3. [Day 2：10 分钟搭起来](./openclaw/day/2)
+4. [资源页](./openclaw/resources)
 
-### 平台选择
+## 路线 2：你想看 legacy Trellis 工作流
 
-默认 `trellis init` 为 Claude Code 配置。要包含其他平台：
+这部分内容处于保留状态，适合你在维护旧项目、研究历史设计，或需要迁移旧知识时使用。
 
-```bash
-# 包含 Cursor 命令
-trellis init --cursor
+推荐顺序：
 
-# 包含多个平台
-trellis init --cursor --iflow
+1. [什么是 Trellis](/guide/ch01-what-is-trellis)
+2. [快速开始](/guide/ch02-quick-start)
+3. [架构全景](/guide/ch04-architecture)
+4. [附录资源](/guide/resources)
 
-# 所有可用的平台选项
-trellis init --claude     # Claude Code（默认）
-trellis init --cursor     # Cursor IDE
-trellis init --iflow      # iFlow CLI
-trellis init --opencode   # OpenCode
-trellis init --codex      # Codex（OpenAI CLI）
-```
+## 路线 3：你想系统补 AI 基础
 
-### 其他常用选项
+如果你的目标是学习，不是马上部署产品，直接去归档资料区会更高效。
 
-```bash
-trellis init -t electron-fullstack   # 使用规范模板
-trellis init --overwrite             # 使用模板时覆盖已有 spec
-trellis init --append                # 模板只补充缺失的文件
-```
+推荐顺序：
 
-### 创建的目录结构
+1. [AI 学习资料总览](/ml/index)
+2. [资料收藏](/ml/collect)
+3. 按目录继续看基础概念、行业观察和实操技巧
 
-这会创建一个 `.trellis/` 目录，结构如下：
+## 如果你准备改文档
 
-```
-.trellis/
-├── workflow.md          # 工作流说明
-├── spec/                # 你的编码规范
-│   ├── frontend/
-│   ├── backend/
-│   └── guides/
-├── workspace/           # 会话日志
-└── tasks/               # 任务跟踪
-```
-
-如果是 Claude Code 项目，还会配置 `.claude/` 目录，包含 hooks 和命令。其他平台会创建对应的配置目录（`.cursor/`、`.iflow/`、`.agents/` 等）。
-
-## 更新 Trellis
-
-新版本发布后：
-
-```bash
-npm install -g @mindfoldhq/trellis@latest
-trellis update
-```
-
-常用更新选项：
-
-```bash
-trellis update --dry-run     # 预览变更，不实际应用
-trellis update --force       # 覆盖所有管理的文件
-trellis update --migrate     # 执行文件迁移（重命名、删除）
-```
-
-`trellis update` 只动没改过的文件，你的自定义不会丢。变更前会自动创建备份。
-
-## 写第一个 Spec
-
-打开 `.trellis/spec/backend/index.md`（如果主要写前端就打开 `frontend/`），填写模板。
-
-一个真实的 spec 长这样：
-
-<CodeGroup>
-```markdown 后端规范示例
-# 后端开发规范
-
-## 错误处理
-
-所有 API 接口返回错误时用这个格式：
-
-{ "error": { "code": "VALIDATION_ERROR", "message": "邮箱不能为空" } }
-
-使用 src/lib/errors.ts 里的 AppError 类。不要直接 throw Error 对象。
-
-## 数据库
-
-- 表名：snake_case，复数形式（user_sessions 而不是 UserSession）
-- 必须包含 created_at 和 updated_at 时间戳
-- 外键格式：{表名}\_id
-
-```
-</CodeGroup>
-
-写具体一点。带上文件路径。放项目里的真实代码。含糊的规范没用。
-
-## 测试一下
-
-开一个新的 Claude Code 会话，让它写点代码。检查它是不是遵循了你的规范。
-
-如果没有，说明你的规范还不够具体。加更多例子进去。
-
-## 接下来
-
-<CardGroup cols={2}>
-
-<Card title="核心概念" icon="book" href="/concepts/overview">
-  了解 Specs、Tasks 和 Workspace 是怎么配合工作的。
-</Card>
-
-<Card title="写好 Spec" icon="pencil" href="/guides/specs">
-  让 AI 真正遵循规范的写作技巧。
-</Card>
-
-<Card title="命令参考" icon="terminal" href="/guides/commands">
-  常用工作流的 Slash 命令。
-</Card>
-
-<Card title="多 Agent 协作" icon="users" href="/guides/multi-agent">
-  并行运行多个 AI Agent。
-</Card>
-
-</CardGroup>
-```
+先看 [贡献文档](/contribute/docs)。那里写了当前仓库真实可用的本地预览、链接校验和导航维护方式。

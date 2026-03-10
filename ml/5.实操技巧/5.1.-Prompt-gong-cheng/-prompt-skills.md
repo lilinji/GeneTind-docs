@@ -7,7 +7,7 @@ sidebar_position: 2
 
 # 5.1.2. Prompt 技巧
 
-接下来我们来看看目前 ChatGPT 使用上的一些常见的技巧，如果你想在看具体技巧前就理解这些技巧的原理，可以先阅读[后面的内容](./-chain-of-thought-prompting.md)，读完所有进阶知识后你会对这些技巧有更深的理解。
+接下来我们来看看目前 ChatGPT 使用上的一些常见的技巧，如果你想在看具体技巧前就理解这些技巧的原理，可以先阅读[后面的内容](/ml/5.实操技巧/5.1.-Prompt-gong-cheng/-chain-of-thought-prompting)，读完所有进阶知识后你会对这些技巧有更深的理解。
 
 ## 技巧一：角色扮演
 
@@ -42,7 +42,7 @@ sidebar_position: 2
 
 可以看到，ChatGPT 的答案会更多地从「哲学老师」的角色出发来回答我们的问题。
 
-「扮演某个角色」这个句子也是我们更便捷地给到 ChatGPT 背景信息元素（元素部分内容详见 [5.1.1](./-basic-prompt-introduction.md)）
+「扮演某个角色」这个句子也是我们更便捷地给到 ChatGPT 背景信息元素（元素部分内容详见 [5.1.1](/ml/5.实操技巧/5.1.-Prompt-gong-cheng/-basic-prompt-introduction)）
 
 以及，我们在网上看到的那些 ChatGPT 模仿某个名人的产品或者对话，有的也是使用了这个技巧：`请扮演 Steve Jobs`（另一种方法是使用 LangChain 等工具，详见 5.2）
 
@@ -98,7 +98,7 @@ ChatGPT 输出：
 
 这里有点像你在跟一个朋友阐述一个概念，抽象的解释可能并不能很好地传达你的意思，那么你只需要给他举一个例子，他也许就能很快理解。
 
-技巧二的具体原理请见 [5.1.3 Zero/Few-shot-prompting](./-zero-few-shot-prompting)
+技巧二的具体原理请见 [5.1.3 Zero/Few-shot-prompting](/ml/5.实操技巧/5.1.-Prompt-gong-cheng/-zero-few-shot-prompting)
 
 ## 技巧三：明确格式
 
@@ -140,7 +140,7 @@ Text: {text}
 
 **当我们需要 ChatGPT 进行相对较复杂的推理任务时**，就是使用这个技巧的时候。
 
-这里应用了 Zero-shot chain-of-thought Prompting，详情请见[5.1.4 Chain-of-Thought Prompting](./-chain-of-thought-prompting)
+这里应用了 Zero-shot chain-of-thought Prompting，详情请见[5.1.4 Chain-of-Thought Prompting](/ml/5.实操技巧/5.1.-Prompt-gong-cheng/-chain-of-thought-prompting)
 
 经过作者的测试，即使我们使用的是中文，也可以直接在文末加上这句`Let's think step by step`，ChatGPT 的表现明显会更好。
 
