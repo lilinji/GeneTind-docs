@@ -19,6 +19,52 @@
         "language": "zh",
         "groups": [
           {
+            "group": "动手学 Pi",
+            "pages": [
+              "zh/pi-textbook/index",
+              {
+                "group": "序章",
+                "pages": [
+                  "zh/pi-textbook/prologue"
+                ]
+              },
+              {
+                "group": "I · 模型与协议",
+                "pages": [
+                  "zh/pi-textbook/typescript-survival",
+                  "zh/pi-textbook/event-stream",
+                  "zh/pi-textbook/message-ir",
+                  "zh/pi-textbook/scripted-model",
+                  "zh/pi-textbook/provider-adapter"
+                ]
+              },
+              {
+                "group": "II · 工具与循环",
+                "pages": [
+                  "zh/pi-textbook/tool-contract",
+                  "zh/pi-textbook/agent-loop",
+                  "zh/pi-textbook/coding-tools"
+                ]
+              },
+              {
+                "group": "III · 状态与历史",
+                "pages": [
+                  "zh/pi-textbook/stateful-agent",
+                  "zh/pi-textbook/session-tree",
+                  "zh/pi-textbook/context-compaction"
+                ]
+              },
+              {
+                "group": "IV · 扩展与验证",
+                "pages": [
+                  "zh/pi-textbook/resources-extensions",
+                  "zh/pi-textbook/composition-root",
+                  "zh/pi-textbook/eval-capstone"
+                ]
+              }
+            ]
+          },
+          {
             "group": "开始阅读",
             "pages": [
               "zh/index",

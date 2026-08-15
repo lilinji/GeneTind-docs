@@ -1,24 +1,41 @@
 ---
 title: 'OpenClaw 文档总览'
-description: '这套文档同时包含 OpenClaw 教程、legacy Trellis 指南和 AI 学习资料。'
+description: '这套文档同时包含动手学 Pi 课程、OpenClaw 教程、legacy Trellis 指南和 AI 学习资料。'
 icon: 'book-open'
 ---
 
 # OpenClaw 文档总览
 
-这个仓库不是单一路线文档，而是一套混合知识库。你可以把它理解成 3 条并行内容线：当前的 `OpenClaw` 产品教程、保留中的 `Trellis` legacy 指南，以及 `AI 学习资料`。
+这个仓库不是单一路线文档，而是一套混合知识库。你可以把它理解成 4 条并行内容线：`动手学 Pi` 课程、当前的 `OpenClaw` 产品教程、保留中的 `Trellis` legacy 指南，以及 `AI 学习资料`。
+
+## 动手学 Pi：从零实现一个 Coding Agent
+
+沿 15 个可运行 checkpoint，从一条离线 Agent 轨迹开始，亲手实现一个 Pi-style coding agent。每章由四部分闭环：**教材正文 + 真实 commit + 聚焦测试 + 故障实验**。课程代码不是伪代码演示，而是一条可以 checkout、运行和验证的 Git 历史。
+
+<CardGroup cols={2}>
+  <Card title="进入动手学 Pi 课程" icon="graduation-cap" href="/zh/pi-textbook/index">
+    从序章到 Eval 验收，共 15 个 checkpoint。
+  </Card>
+  <Card title="从序章开始读" icon="book-open" href="/zh/pi-textbook/prologue">
+    跟随一次 README 请求，看完整条 Agent 闭环。
+  </Card>
+</CardGroup>
 
 ## 这三条内容线现在分别是什么
 
 | 内容线 | 当前状态 | 最适合谁 |
 | --- | --- | --- |
+| 动手学 Pi | 社区原创的编码 Agent 课程 | 想亲手实现 Agent 内核、理解模型与工具闭环的读者 |
 | OpenClaw | 当前维护中的主线 | 想部署个人 AI 助手的读者 |
 | Trellis legacy | 保留中的历史文档 | 想查旧工作流、旧设计和历史背景的读者 |
 | AI 学习资料 | 归档型资料区 | 想系统补基础、翻资料和继续整理旧内容的读者 |
 
 ## 先选你的目标
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
+  <Card title="开始动手学 Pi" icon="graduation-cap" href="/zh/pi-textbook/index">
+    15 个 checkpoint，从一条离线轨迹实现 Pi-style coding agent。
+  </Card>
   <Card title="部署 OpenClaw" icon="rocket" href="/openclaw/index">
     7 天教程，从零搭起一个可长期运行的 AI 助手。
   </Card>
@@ -32,13 +49,17 @@ icon: 'book-open'
 
 ## 推荐阅读路径
 
-1. 如果你想真正搭一个 AI 助手，直接进入 [OpenClaw 总览](/openclaw/index)。
-2. 如果你在维护或研究旧的 Trellis 工作流，先看 [什么是 Trellis](/guide/ch01-what-is-trellis)。
-3. 如果你只是想系统补 AI 基础，先看 [AI 学习资料](/ml/index)。
+1. 如果你想亲手实现一个 coding agent 的内核，从 [动手学 Pi 序章](/zh/pi-textbook/prologue) 开始。
+2. 如果你想真正搭一个 AI 助手，直接进入 [OpenClaw 总览](/openclaw/index)。
+3. 如果你在维护或研究旧的 Trellis 工作流，先看 [什么是 Trellis](/guide/ch01-what-is-trellis)。
+4. 如果你只是想系统补 AI 基础，先看 [AI 学习资料](/ml/index)。
 
 ## 常用入口
 
 <CardGroup cols={2}>
+  <Card title="动手学 Pi 课程" icon="graduation-cap" href="/zh/pi-textbook/index">
+    从零实现 Pi-style coding agent 的完整教材。
+  </Card>
   <Card title="OpenClaw 7 天教程" icon="sparkles" href="/openclaw/index">
     当前仓库里最适合新用户的主线内容。
   </Card>
